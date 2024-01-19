@@ -21,4 +21,10 @@ export class EnvKeyConstants {
 	public static readonly DATABASE_PASSWORD = 'DATABASE_PASSWORD';
 	public static readonly DATABASE_NAME = 'DATABASE_NAME';
 
+
+	/**
+	 * Database connection detail
+	 */
+	public static readonly MONGO_URI = 'MONGO_URI';
+
 }
