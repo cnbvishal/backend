@@ -9,9 +9,9 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import { UsersService } from '../modules/users/users.service';
+import { UsersService } from '../../modules/users/users.service';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { UserDTO } from '../modules/users/dto/users.dto';
+import { UserDTO } from '../../modules/users/dto/users.dto';
 
 @Controller('users')
 export class UsersController {
@@ -20,7 +20,7 @@ export class UsersController {
   @ApiBearerAuth()
   @UseGuards()
   @Post()
-  async createUser(@Req() req, @Res() res, @Body() createUserDTO: UserDTO) {
+  async createUser(@Req() req, @Res() res, @Body() createUserDTO: UserDTO):Promise<void> {
     try {
 
       const new_user = await this.usersService.create(createUserDTO);

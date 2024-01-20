@@ -1,4 +1,5 @@
 import { GenericAppError, BaseError } from '../errors';
+import { AppError } from '../errors/app.error';
 
 interface Action<T = void> {
 	(arg?: T): void;
@@ -16,7 +17,7 @@ export class Result<T> {
 
 	private constructor(isSuccess: boolean, error?: BaseError | string, value?: T, message?: string) {
 		if (isSuccess && error) {
-			throw new GenericAppError.AppError('InvalidOperation: A result cannot be successful and contain an error');
+			throw new AppError('InvalidOperation: A result cannot be successful and contain an error');
 		}
 		if (!isSuccess && !error) {
 			throw new Error('InvalidOperation: A failing result needs to contain an error message');
@@ -34,7 +35,7 @@ export class Result<T> {
 		if (this.isSuccess) {
 			return this._value;
 		} else {
-			throw new GenericAppError.AppError("Can't get the value of an error result. Use 'errorValue' instead.");
+			throw new AppError("Can't get the value of an error result. Use 'errorValue' instead.");
 		}
 	}
 
@@ -42,7 +43,7 @@ export class Result<T> {
 		if (this.isFailure) {
 			return this._error;
 		} else {
-			throw new GenericAppError.AppError("Can't get the value of an success result. Use 'getValue' instead.");
+			throw new AppError("Can't get the value of an success result. Use 'getValue' instead.");
 		}
 	}
 
